@@ -123,13 +123,20 @@ fn get_percentage(input: &str) -> Option<f64> {
 ///
 /// * `prior` - The prior probability as a decimal fraction.
 /// * `likelihood` - The likelihood as a decimal fraction.
-/// * `evidence` - The evidence as a decimal fraction.
+/// * `evidence` - The evidence as a decimal fraction. A value of zero indicates
+///                that the evidence is not observed, which results in an undefined
+///                posterior probability.
 ///
 /// # Returns
 ///
 /// * A f64 value representing the posterior probability as a decimal fraction.
+///   If `evidence` is zero, the function returns NaN (Not-a-Number).
 fn bayesian(prior: f64, likelihood: f64, evidence: f64) -> f64 {
-    (prior * likelihood) / evidence
+    if evidence == 0.0 {
+        std::f64::NAN
+    } else {
+        (prior * likelihood) / evidence
+    }
 }
 
 #[cfg(test)]
@@ -185,7 +192,7 @@ mod tests {
     #[test]
     fn test_bayesian_zero_evidence() {
         let prior = 0.5;
-        let likelihood = 0.8;
+        let likelihood = 0.7;
         let evidence = 0.0;
         let calculated_posterior = bayesian(prior, likelihood, evidence);
         assert!(calculated_posterior.is_nan());

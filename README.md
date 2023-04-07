@@ -1,5 +1,12 @@
 # Bayesian Probability Calculator CLI
 
+[![Crates.io](https://img.shields.io/crates/v/probability-cli.svg)](https://crates.io/crates/probability_cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Contributing](https://img.shields.io/badge/Contributing-Guidelines-blue)](CONTRIBUTING.md)
+[![Code of Conduct](https://img.shields.io/badge/Code%20of%20Conduct-Respectful-orange)](CODE_OF_CONDUCT.md)
+[![Visitors](https://visitor-badge.glitch.me/badge?page_id=bencgreenberg.probability-cli)](https://github.com/bencgreenberg/probability-cli)
+[![Made with Love](https://img.shields.io/badge/Made%20with-Love-ff69b4.svg)](https://shields.io/)
+
 Welcome to the Bayesian Probability Calculator CLI! This command-line tool is designed to help you update your beliefs about the probability of an event based on new evidence. Using Bayesian probability, you can make better decisions under uncertainty.
 
 ## Overview

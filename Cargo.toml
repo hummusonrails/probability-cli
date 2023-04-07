@@ -1,11 +1,10 @@
 [package]
 name = "probability_cli"
-author = "Ben Greenberg"
+authors = ["Ben Greenberg <ben.greenberg@gmail.com>"]
 description = "A command line interface for probability calculations using Bayesian probability"
 repository = "https://github.com/bencgreenberg/probability-cli"
 license = "MIT"
-license-file = "LICENSE"
-keyword = "probability, bayesian, cli"
+keywords = ["bayesian", "probability", "calculator", "cli"]
 readme = "README.md"
 version = "0.0.1"
 edition = "2021"

@@ -1,0 +1,42 @@
+name: Publish to crates.io
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Cargo.toml'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          components: rustfmt, clippy
+          override: true
+
+      - name: Check for version changes
+        id: version_changes
+        run: |
+          git fetch --prune --unshallow
+          VERSION_CHANGED=$(git diff origin/main^ Cargo.toml | grep '^+' | grep -E 'version\s*=\s*"[0-9.]*"')
+          if [ -n "$VERSION_CHANGED" ]; then
+            echo "::set-output name=changed::true"
+          else
+            echo "::set-output name=changed::false"
+          fi
+
+      - name: Publish to crates.io
+        if: steps.version_changes.outputs.changed == 'true'
+        uses: actions-rs/cargo@v1
+        with:
+          command: publish
+          args: --token ${{ secrets.CRATES_IO_TOKEN }}

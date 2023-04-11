@@ -24,13 +24,13 @@ To run the Bayesian Probability Calculator, you need to have Rust installed on y
 Clone the repository:
 
 ```bash
-git clone https://github.com/bencgreenberg/probability_calculator.git
+git clone https://github.com/bencgreenberg/probability-cli.git
 ```
 
 Change to the project directory:
 
 ```bash
-cd bayesian_probability_calculator
+cd probability-cli
 ```
 
 Build and run the project:

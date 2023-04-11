@@ -60,6 +60,10 @@ fn main() {
     println!();
     let posterior = bayesian(prior, likelihood, evidence);
     let percentage_posterior = posterior * 100.0;
+
+    // Print the data that the user provided in a table
+    create_table(prior, likelihood, evidence, posterior);
+    
     println!(
         "{}",
         format!(
@@ -67,7 +71,7 @@ fn main() {
             description.trim(),
             percentage_posterior
         )
-        .magenta()
+        .red().bold()
     );
 }
 
@@ -115,6 +119,55 @@ fn get_percentage(input: &str) -> Option<f64> {
     } else {
         None
     }
+}
+
+/// Displays a formatted table with Bayesian probabilities.
+///
+/// The function presents four key probabilities: prior, likelihood, evidence, and posterior.
+/// The table provides a clear visual representation of the probabilities to facilitate
+/// understanding and decision-making.
+///
+/// # Arguments
+///
+/// * `prior` - The initial belief about the probability of an event before considering new evidence (as a decimal fraction).
+/// * `likelihood` - The probability of observing the new evidence, assuming the event is true (as a decimal fraction).
+/// * `evidence` - The probability of observing the new evidence, taking into account all possible scenarios (as a decimal fraction).
+/// * `posterior` - The updated probability of the event occurring, given the new evidence (as a decimal fraction).
+///
+/// # Example
+///
+/// ```
+/// create_table(0.5, 0.8, 0.7, 0.5714);
+/// ```
+///
+/// This example creates a table with the following probabilities: prior = 50%, likelihood = 80%,
+/// evidence = 70%, and posterior = 57.14%.
+fn create_table(prior: f64, likelihood: f64, evidence: f64, posterior: f64) {
+    println!("In this table, we present four key probabilities based on the data you provided:");
+    println!("  - Prior: Your initial belief about the probability of an event before considering new evidence.");
+    println!("  - Likelihood: How probable the new evidence is, assuming the event is true.");
+    println!("  - Evidence: The probability of observing the new evidence, taking into account all possible scenarios.");
+    println!("  - Posterior: The updated probability of the event occurring, given the new evidence.");
+    println!();
+
+    // Print the header for the table
+    println!("{}", "+-------------+----------------+".cyan());
+    println!("| {} | {} |", "Probability".bold(), "Value".bold());
+    println!("{}", "+-------------+----------------+".cyan());
+
+    // Print the data in the table with colors
+    println!("| {:<11} | {:<14.2}% |", "Prior".yellow(), prior * 100.0);
+    println!("| {:<11} | {:<14.2}% |", "Likelihood".green(), likelihood * 100.0);
+    println!("| {:<11} | {:<14.2}% |", "Evidence".blue(), evidence * 100.0);
+    println!("| {:<11} | {:<14.2}% |", "Posterior".magenta(), posterior * 100.0);
+
+    // Print the footer for the table
+    println!("{}", "+-------------+----------------+".cyan());
+
+    println!();
+    println!("Use this table to understand how new evidence has updated the probability of the event.");
+    println!("Keep in mind that Bayesian reasoning is an iterative process, and you can update your probabilities as new evidence becomes available.");
+    println!();
 }
 
 /// Calculates the posterior probability using Bayesian reasoning.

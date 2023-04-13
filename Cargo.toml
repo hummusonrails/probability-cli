@@ -2,7 +2,7 @@
 name = "probability_cli"
 authors = ["Ben Greenberg <ben.greenberg@gmail.com>"]
 description = "A command line interface for probability calculations using Bayesian probability"
-repository = "https://github.com/bencgreenberg/probability-cli"
+repository = "https://github.com/hummusonrails/probability-cli"
 license = "MIT"
 keywords = ["bayesian", "probability", "calculator", "cli"]
 readme = "README.md"
